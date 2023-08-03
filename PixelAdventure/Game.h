@@ -10,8 +10,10 @@ private:
 	float dt;
 
 	std::stack<State*> states;
+	std::map<std::string, int> supportedKeys;
 
 	void init();
+	void initKeys();
 	void pollEvents();
 	void updateDt();
 	void update();

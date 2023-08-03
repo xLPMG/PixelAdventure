@@ -8,22 +8,27 @@
 #include<stack>
 #include<map>
 
-#include"SFML\System.hpp"
-#include"SFML\Window.hpp"
-#include"SFML\Graphics.hpp"
-#include"SFML\Audio.hpp"
-#include"SFML\Network.hpp"
+#include "Entity.h"
 
 class State
 {
 private:
+	bool shouldEnd;
+protected:
 	sf::RenderWindow* window;
+	std::map<std::string, int>* supportedKeys;
+	std::map<std::string, int> keybinds;
+
 	std::vector<sf::Texture> textures;
+	virtual void initKeybinds()=0;
 public:
-	State(sf::RenderWindow* window);
+	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
 	virtual ~State();
 
+	const bool& getQuit() const;
+	virtual void checkEnded();
 	virtual void endState() = 0;
+	virtual void updateInput(const float& dt)=0;
 	virtual void update(const float& dt) = 0;
 	virtual void render(sf::RenderTarget* target = nullptr)=0;
 };

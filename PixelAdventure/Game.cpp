@@ -21,8 +21,22 @@ void Game::init() {
 	window->setFramerateLimit(framerateLimit);
 	window->setVerticalSyncEnabled(vsynchEnabled);
 	
-	states.push(new GameState(window));
+	initKeys();
+	states.push(new GameState(window, &supportedKeys));
 	run();
+}
+
+void Game::initKeys()
+{
+	std::ifstream ifs("Config/supported_keys.ini");
+	if(ifs.is_open()){
+		std::string key = "";
+		int val = 0;
+		while (ifs >> key >> val) {
+			supportedKeys[key] = val;
+		}
+	}
+	ifs.close();
 }
 
 void Game::pollEvents() {
@@ -43,6 +57,11 @@ void Game::update() {
 	pollEvents();
 	if (!states.empty()) {
 		states.top()->update(dt);
+		if(states.top()->getQuit()){
+			states.top()->endState();
+			delete states.top();
+			states.pop();
+		}
 	}
 }
 void Game::render() {
