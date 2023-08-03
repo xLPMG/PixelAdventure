@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "MainMenuState.h"
 
 #define WIN_WIDTH 1600
 #define WIN_HEIGHT 900
@@ -22,7 +23,7 @@ void Game::init() {
 	window->setVerticalSyncEnabled(vsynchEnabled);
 	
 	initKeys();
-	states.push(new GameState(window, &supportedKeys));
+	states.push(new MainMenuState(window, &supportedKeys));
 	run();
 }
 
@@ -62,6 +63,9 @@ void Game::update() {
 			delete states.top();
 			states.pop();
 		}
+	}
+	else {
+		window->close();
 	}
 }
 void Game::render() {

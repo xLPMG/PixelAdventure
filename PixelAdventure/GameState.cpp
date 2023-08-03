@@ -43,6 +43,7 @@ void GameState::updateInput(const float& dt)
 }
 void GameState::update(const float& dt)
 {
+	updateMousePosition();
 	updateInput(dt);
 	player.update(dt);
 }

@@ -18,3 +18,15 @@ void State::checkEnded()
 		shouldEnd=true;
 	}
 }
+
+void State::updateInput(const float& dt)
+{
+}
+
+
+void State::updateMousePosition()
+{
+	mousePosScreen = sf::Mouse::getPosition();
+	mousePosWindow = sf::Mouse::getPosition(*this->window);
+	mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+}
