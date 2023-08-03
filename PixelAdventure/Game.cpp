@@ -1,11 +1,27 @@
 #include "Game.h"
-#include <SFML\Graphics.hpp>
 
 #define WIN_WIDTH 1600
 #define WIN_HEIGHT 900
 
 void Game::init() {
-	this->window = new sf::RenderWindow(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "PixelAdventure");
+	std::ifstream ifs("Config/window.ini");
+	sf::VideoMode windowBounds(1600, 900);
+	std::string title = "None";
+	unsigned framerateLimit = 144;
+	bool vsynchEnabled = false;
+	if (ifs.is_open()) {
+		std::getline(ifs, title);
+		ifs >> windowBounds.width >> windowBounds.height;
+		ifs >> framerateLimit;
+		ifs >> vsynchEnabled;
+	}
+	ifs.close();
+
+	window = new sf::RenderWindow(windowBounds, title);
+	window->setFramerateLimit(framerateLimit);
+	window->setVerticalSyncEnabled(vsynchEnabled);
+	
+	states.push(new GameState(window));
 	run();
 }
 
@@ -20,25 +36,39 @@ void Game::pollEvents() {
 	}
 }
 
-Game::Game() {
-	init();
-}
-Game::~Game(){
-	delete window;
+void Game::updateDt() {
+	dt = dtClock.restart().asSeconds();
 }
 void Game::update() {
 	pollEvents();
+	if (!states.empty()) {
+		states.top()->update(dt);
+	}
 }
 void Game::render() {
 	window->clear();
 	//draw
+	if(!states.empty()) {
+		states.top()->render();
+	}
 	//end draw
 	window->display();
 }
 
+Game::Game() {
+	init();
+}
+Game::~Game() {
+	delete window;
+	while(!states.empty()){
+		delete states.top();
+		states.pop();
+	}
+}
 void::Game::run() {
 	while (window->isOpen())
 	{
+		updateDt();
 		update();
 		render();
 	}
