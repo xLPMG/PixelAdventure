@@ -19,6 +19,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{e17f9dd9-0b09-44fa-8604-64ecf9b8cdf3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{659be2ca-92de-4af5-a036-c36e4a5ca08e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -42,6 +45,12 @@
     <ClCompile Include="Button.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -60,6 +69,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

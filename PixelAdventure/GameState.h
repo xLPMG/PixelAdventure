@@ -4,8 +4,10 @@ class GameState :
     public State
 {
 private:
-    Entity player;
+    Player* player;
     void initKeybinds();
+    void initTextures();
+    void initPlayers();
 public:
     GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
     virtual ~GameState();
