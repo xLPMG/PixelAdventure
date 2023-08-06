@@ -20,11 +20,14 @@ private:
 	sf::Sprite& sprite;
 
 	float maxSpeed;
+	float acceleration;
+	float deceleration;
+
 	sf::Vector2f speed;
-	sf::Vector2f acceleration;
-	sf::Vector2f deceleration;
+
 public:
-	MovementComponent(sf::Sprite& sprite, float maxSpeed);
+	MovementComponent(sf::Sprite& sprite, float maxSpeed, 
+		float acceleration, float deceleration);
 	virtual ~MovementComponent();
 
 	const sf::Vector2f& getSpeed() const;

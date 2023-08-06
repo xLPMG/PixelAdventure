@@ -57,10 +57,12 @@ void MainMenuState::initElements()
 	int y1 = 0.5 * windowHeight;
 	int y2 = y1 + (btnHeight + space) * 1;
 	int y3 = y1 + (btnHeight + space) * 2;
+	int y4 = y1 + (btnHeight + space) * 3;
 	int x = windowWidth / 2 - btnWidth / 2;
-	buttons["PLAY_BTN"] = new Button(x, y1, btnWidth, btnHeight, &font, "Play", 36);
-	buttons["SETTINGS_BTN"] = new Button(x, y2, btnWidth, btnHeight, &font, "Settings", 36);
-	buttons["EXIT_BTN"] = new Button(x, y3, btnWidth, btnHeight, &font, "Quit", 36);
+	buttons["PLAY_BTN"] = new Button(x, y1, btnWidth, btnHeight, &font, "Play", 48,"mainmenu");
+	buttons["SETTINGS_BTN"] = new Button(x, y2, btnWidth, btnHeight, &font, "Settings", 48,"mainmenu");
+	buttons["EDITOR_BTN"] = new Button(x, y3, btnWidth, btnHeight, &font, "Editor", 48,"mainmenu");
+	buttons["EXIT_BTN"] = new Button(x, y4, btnWidth, btnHeight, &font, "Quit", 48,"mainmenu");
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)

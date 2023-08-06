@@ -19,8 +19,14 @@ private:
 	sf::Color hoverColor;
 	sf::Color activeColor;
 
+	sf::Color textIdleColor;
+	sf::Color textHoverColor;
+	sf::Color textActiveColor;
+
+	void initColors(std::string style);
+
 public:
-	Button(float x, float y, float width, float height, sf::Font* font, std::string text, int fontSize);
+	Button(float x, float y, float width, float height, sf::Font* font, std::string text, unsigned fontSize, std::string style);
 	~Button();
 
 	const bool isActive() const;
