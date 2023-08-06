@@ -13,21 +13,15 @@ void GameState::initKeybinds()
 	ifs.close();
 }
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
-	: State(window, supportedKeys)
+GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+	: State(window, supportedKeys,states)
 {
 	initKeybinds();
 }
 GameState::~GameState() {}
 
-void GameState::endState() {
-	std::cout << "ending" << std::endl;
-}
-
 void GameState::updateInput(const float& dt)
 {
-	checkEnded();
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_LEFT")))) {
 		player.move(dt, -1.f, 0.f);
 	}
@@ -39,6 +33,9 @@ void GameState::updateInput(const float& dt)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_DOWN")))) {
 		player.move(dt, 0.f, 1.f);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("CLOSE")))) {
+		endState();
 	}
 }
 void GameState::update(const float& dt)
