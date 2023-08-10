@@ -15,12 +15,12 @@ void GameState::initKeybinds()
 
 void GameState::initTextures()
 {
-	if (!textures["PLAYER_IDLE_0"].loadFromFile("Resources/Images/Sprites/sorcerer.png")) throw "ERROR::GAME_STATE::COULD_NOT_LOAD_TEXTURE";
+	if (!textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/sorcerer_sheet.png")) throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 }
 
 void GameState::initPlayers()
 {
-	player = new Player(0,0, textures["PLAYER_IDLE_0"]);
+	player = new Player(0,0, textures["PLAYER_SHEET"]);
 }
 
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
