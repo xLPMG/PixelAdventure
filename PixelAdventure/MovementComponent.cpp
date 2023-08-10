@@ -14,6 +14,11 @@ const sf::Vector2f& MovementComponent::getSpeed() const
 	return speed;
 }
 
+const bool MovementComponent::isIdle() const
+{
+	return (speed.x==0.f && speed.y == 0.f);
+}
+
 void MovementComponent::move(const float x, const float y, const float dt)
 {
 	speed.x += acceleration * x;
